@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  tomcat:
+    build: ./tomcat
+    container_name: amazonlinux-tomcat
+    ports:
+      - "8082:8080"
+    networks:
+      - devops-course-net
+
+  jenkins:
+    build: ./jenkins
+    container_name: amazonlinux-jenkins
+    ports:
+      - "8083:8080"
+    networks:
+      - devops-course-net
+
+  docker:
+    build: ./docker
+    container_name: amazonlinux-docker
+    privileged: true
+    hostname: dockerhost
+    ports:
+      - "8081:8081"
+      - "2222:22"
+      - "8086:8086"
+      - "8087:8087"
+    networks:
+      - devops-course-net
+
+networks:
+  devops-course-net:
+
